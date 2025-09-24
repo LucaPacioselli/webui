@@ -117,6 +117,20 @@ const LockStateDisplayNames: Record<LockState, string> = {
     [LockState.UNKNOWN]: 'Unknown',
 };
 
+
+const FTSHistoryButton = () => {
+  const handleOpenPage = () => {
+    // Apri una nuova scheda verso la route interna della webui
+    window.open("/fts-history", "_blank");
+  };
+
+  return (
+    <button onClick={handleOpenPage} style={{ padding: "8px 16px" }}>
+      Show FTS links
+    </button>
+  );
+};
+
 const DetailsRuleLocksTable = (props: DetailsRuleLocksTableProps) => {
     const tableRef = useRef<AgGridReact<ListRuleReplicaLockStatesViewModel>>(null);
 
@@ -157,6 +171,11 @@ const DetailsRuleLocksTable = (props: DetailsRuleLocksTableProps) => {
         {
             headerName: 'FTS Monitoring',
             cellRenderer: FTSLinkButton,
+            minWidth: 200,
+        },
+        {
+            headerName: 'FTS History',
+            cellRenderer: FTSHistoryButton,
             minWidth: 200,
         },
     ]);
