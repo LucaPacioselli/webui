@@ -47,9 +47,9 @@ export function prepareRequestArgs(request: HTTPRequest): {
     }
     if (process.env.NODE_TLS_REJECT_UNAUTHORIZED === '1') {
         try {
-            const caPath = process.env.NODE_EXTRA_TLS_CERTS ?? '';
+            const caPath = process.env.NODE_EXTRA_CA_CERTS ?? '';
             if (caPath === '') {
-                throw new Error('NODE_EXTRA_TLS_CERTS is not set');
+                throw new Error('NODE_EXTRA_CA_CERTS is not set');
             }
             const ca = fs.readFileSync(caPath);
             const rucioHost = extractHostname(request.url as string);
